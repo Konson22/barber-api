@@ -1,0 +1,12 @@
+
+POST http://localhost:3001/auth/signup
+Content-Type: application/json
+
+{
+    "username":"Kon",
+    "email":"konsonak@gmail.com",
+    "phoneNumber":"0920079070",
+    "location":"Juba",
+    "imageUrl":"image-url",
+    "password":"konsonak"
+}
