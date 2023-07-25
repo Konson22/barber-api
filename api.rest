@@ -1,5 +1,5 @@
 
-POST http://localhost:3001/auth/signup
+POST https://barber-api-2tgx.onrender.com/auth/login
 Content-Type: application/json
 
 {
