@@ -8,15 +8,15 @@ const mongoose = require('mongoose');
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors({origin: '*', methods: ["GET", "POST"], credentials: true }));
+app.use(cors({origin: '*', methods: ["GET", "POST"] }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
 const loginRoute = require('./roues/auth');
 const usersRoute = require('./roues/users');
 
-// mongoose.connect(process.env.LOCAL_DATA_BASE_URL, { useNewUrlParser:true });
-mongoose.connect(process.env.DATA_BASE_URL, { useNewUrlParser:true });
+// mongoose.connect(process.env.DATA_BASE_URL, { useNewUrlParser:true });
+mongoose.connect(process.env.LOCAL_DATA_BASE_URL, { useNewUrlParser:true });
 const db = mongoose.connection;
 db.on('error', (error) => console.log(error))
 db.on('open', () => console.log('connected!'))

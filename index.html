@@ -29,6 +29,11 @@
 <body>
     <div class="">
         <form class="form">
+            <input type="text" class="email" name="email" placeholder="email">
+            <input type="text" class="password" name="password" placeholder="password">
+            <button type="submit">Login</button>
+        </form>
+        <!-- <form class="form">
             <input type="text" class="username" name="username" placeholder="username">
             <input type="text" class="email" name="email" placeholder="email">
             <input type="text" class="phoneNumber" name="phoneNumber" placeholder="phoneNumber">
@@ -38,18 +43,40 @@
             <input type="text" class="password" name="password" placeholder="password">
             <input type="file" class="imageUrl" name="imageUrl" placeholder="imageUrl">
             <button type="submit">Submit</button>
-        </form>
+        </form> -->
     </div>
 
     <script>
+        const url = "https://barber-api-2tgx.onrender.com/auth/login"
+        const url2 = 'http://localhost:3001/auth/login'
+        
+        const form = document.querySelector('.form');
         const email = document.querySelector('.email');
         const password = document.querySelector('.password');
-        const form = document.querySelector('.form');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
            const formdata = new FormData(form);
-            const response = await fetch("http://localhost:3001/auth/signup", {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email:email.value,
+                    password:password.value,
+                })
+            });
+   
+           const data = await response.json()
+           console.log(data)
+        })
+
+        /*
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+           const formdata = new FormData(form);
+            const response = await fetch(url, {
                 method: "POST",
                 body: formdata
             });
@@ -57,22 +84,8 @@
            const data = await response.json()
            console.log(data)
         })
-        /*document.querySelector('.form').addEventListener('submit', async (e) => {
-            e.preventDefault()
-            const response = await fetch("http://localhost:3001/auth/login", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: email.value,
-                    password: password.value
-                })
-            })
-
-            const data = await response.json()
-            console.log(data)
-        }) */
+        */
+      
     </script>
 </body>
 </html>
