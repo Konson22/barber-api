@@ -27,9 +27,11 @@ const deleteUser = (req, res) => {
     }
 }
 
-const getAllUsers = (req, res) => {
+const getAllUsers = async (req, res) => {
     try{
-        res.send('all users')
+        const barber = await User.find();
+        console.log(barber);
+        res.json(barber)
     }catch(err){
         
     }

@@ -1,12 +1,15 @@
 
-POST https://barber-api-2tgx.onrender.com/auth/login
+POST https://barber-api-2tgx.onrender.com/auth/signup
 Content-Type: application/json
 
 {
     "username":"Kon",
-    "email":"konsonak@gmail.com",
+    "email":"konsona@gmail.com",
     "phoneNumber":"0920079070",
     "location":"Juba",
     "imageUrl":"image-url",
     "password":"konsonak"
 }
+
+###
+GET https://barber-api-2tgx.onrender.com/users
