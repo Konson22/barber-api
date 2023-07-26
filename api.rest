@@ -12,4 +12,4 @@ Content-Type: application/json
 }
 
 ###
-GET https://barber-api-2tgx.onrender.com/users
+GET http://localhost:3001/users

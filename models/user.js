@@ -7,7 +7,10 @@ const userSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   imageUrl: { type: String, required: true },
   location: { type: String, required: true },
+  billingInformation: { type: String, required: true },
+  purchaseHistory: { type: String, required: true },
   password: { type: String, required: true },
 });
+
 
 module.exports = mongoose.model('User', userSchema);

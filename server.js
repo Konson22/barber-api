@@ -14,8 +14,6 @@ app.use(express.static('public'));
 
 const loginRoute = require('./roues/auth');
 const usersRoute = require('./roues/users');
-// const barberRoute = require('./roues/barbers');
-// const appointmentRoute = require('./roues/appointments');
 
 // mongoose.connect(process.env.LOCAL_DATA_BASE_URL, { useNewUrlParser:true });
 mongoose.connect(process.env.DATA_BASE_URL, { useNewUrlParser:true });
@@ -26,8 +24,6 @@ db.on('open', () => console.log('connected!'))
 
 app.use('/auth', loginRoute);
 app.use('/users', usersRoute);
-// app.use('/barbers', barberRoute);
-// app.use('/appointments', appointmentRoute);
 
 const PORT = process.env.PORT || 3001
 

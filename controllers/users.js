@@ -29,9 +29,8 @@ const deleteUser = (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try{
-        // const barber = await User.find();
-        // res.json(barber)
-        res.json({msg:'all users'})
+        const barber = await User.find();
+        res.json(barber)
     }catch(err){
         res.json(err)
     }
