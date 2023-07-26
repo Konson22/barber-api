@@ -47,8 +47,8 @@
     </div>
 
     <script>
-        const url = "https://barber-api-2tgx.onrender.com/auth/login"
-        const url2 = 'http://localhost:3001/auth/login'
+        const remoteURL = "https://barber-api-2tgx.onrender.com/auth/login"
+        const url = 'http://localhost:3001/auth/login'
         
         const form = document.querySelector('.form');
         const email = document.querySelector('.email');
@@ -56,11 +56,10 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
-           const formdata = new FormData(form);
-            const response = await fetch(url2, {
+            const response = await fetch(remoteURL, {
                 method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
+                headers:{
+                    'Content-Type':'application/json'
                 },
                 body: JSON.stringify({
                     email:email.value,
