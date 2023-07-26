@@ -8,7 +8,10 @@ Content-Type: application/json
     "phoneNumber":"0920079070",
     "location":"Juba",
     "imageUrl":"image-url",
-    "password":"konsonak"
+    "password":"konsonak",
+    "billingInformation":{},
+    "purchaseHistory":{}
+
 }
 
 ###

@@ -5,11 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body{
+        background-color: blueviolet;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    div{
+        padding: 2rem;
+        background-color: #fff;
+        width: 40%;
+    }
+    input{
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+        height: 3rem;
+        width: 100%;
+        border: none;
+        background-color: rgb(205, 209, 212);
+    }
+</style>
 <body>
     <div class="">
         <form class="form">
-            <input type="text" class="email" placeholder="email">
-            <input type="text" class="password" placeholder="password">
+            <input type="text" class="username" name="username" placeholder="username">
+            <input type="text" class="email" name="email" placeholder="email">
+            <input type="text" class="phoneNumber" name="phoneNumber" placeholder="phoneNumber">
+            <input type="text" class="location" name="location" placeholder="location">
+            <input type="text" class="billingInformation" name="billingInformation" placeholder="billingInformation">
+            <input type="text" class="purchaseHistory" name="purchaseHistory" placeholder="purchaseHistory">
+            <input type="text" class="password" name="password" placeholder="password">
+            <input type="file" class="imageUrl" name="imageUrl" placeholder="imageUrl">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -17,10 +44,21 @@
     <script>
         const email = document.querySelector('.email');
         const password = document.querySelector('.password');
+        const form = document.querySelector('.form');
 
-        document.querySelector('.form').addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault()
-           
+           const formdata = new FormData(form);
+            const response = await fetch("http://localhost:3001/auth/signup", {
+                method: "POST",
+                body: formdata
+            });
+   
+           const data = await response.json()
+           console.log(data)
+        })
+        /*document.querySelector('.form').addEventListener('submit', async (e) => {
+            e.preventDefault()
             const response = await fetch("http://localhost:3001/auth/login", {
                 method: "POST",
                 headers: {
@@ -34,8 +72,7 @@
 
             const data = await response.json()
             console.log(data)
-            // mongodb://0.0.0.0:27017/
-        })
+        }) */
     </script>
 </body>
 </html>

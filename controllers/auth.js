@@ -30,14 +30,8 @@ const loginUser = async (req, res) => {
 
 // Sign-up route
 const registerUser = async (req, res) => {
-  const { username, email, phoneNumber, imageUrl, location, password } = req.body;
-
+  const { username, email, phoneNumber, location, password } = req.body;
   try {
-    // check('image', 'Please upload an image file').isImage()(req, res, (err) => {
-    //   if (err instanceof Error) {
-    //     return res.status(400).json({ errors: [{ msg: err.message }] });
-    //   }
-    // });
 
     // Check if the email is already registered
     const existingUser = await User.findOne({ email });
@@ -51,7 +45,7 @@ const registerUser = async (req, res) => {
     const newUser = new User({
       username,
       phoneNumber,
-      imageUrl,
+      imageUrl:req.imageUrl,
       location,
       email,
       password: hashedPassword,

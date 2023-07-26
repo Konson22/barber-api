@@ -11,11 +11,13 @@ const app = express();
 // Set up the multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // The uploads folder where the images will be stored
+    cb(null, 'uploads/'); 
   },
   filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext);
+    const exten = file.originalname.split('.')[1];
+    const fileName = `${Date.now()}.${exten}`;
+    req.imageUrl = fileName;
+    cb(null, fileName);
   },
 });
 
@@ -23,7 +25,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post('/login', loginUser);
-router.post('/signup', registerUser);
-// router.post('/signup', upload.single('image'), registerUser);
+// router.post('/signup', registerUser);
+router.post('/signup', upload.single('imageUrl'), registerUser);
 
 module.exports = router;
