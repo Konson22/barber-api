@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
     body{
         background-color: blueviolet;
         display: flex;
@@ -28,35 +32,35 @@
 </style>
 <body>
     <div class="">
-        <form class="form">
+        <!-- <form class="form">
             <input type="text" class="email" name="email" placeholder="email">
             <input type="text" class="password" name="password" placeholder="password">
             <button type="submit">Login</button>
-        </form>
-        <!-- <form class="form">
+        </form> -->
+        <form class="form">
             <input type="text" class="username" name="username" placeholder="username">
             <input type="text" class="email" name="email" placeholder="email">
-            <input type="text" class="phoneNumber" name="phoneNumber" placeholder="phoneNumber">
             <input type="text" class="location" name="location" placeholder="location">
             <input type="text" class="billingInformation" name="billingInformation" placeholder="billingInformation">
             <input type="text" class="purchaseHistory" name="purchaseHistory" placeholder="purchaseHistory">
             <input type="text" class="password" name="password" placeholder="password">
             <input type="file" class="imageUrl" name="imageUrl" placeholder="imageUrl">
+             <input type="text" class="phoneNumber" name="phonenumber" placeholder="phoneNumber">
             <button type="submit">Submit</button>
-        </form> -->
+        </form>
     </div>
 
     <script>
         const remoteURL = "https://barber-api-2tgx.onrender.com/auth/login"
-        const url = 'http://localhost:3001/auth/login'
+        const url = 'http://localhost:3001/auth/signup'
         
         const form = document.querySelector('.form');
         const email = document.querySelector('.email');
         const password = document.querySelector('.password');
-
+/*
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
-            const response = await fetch(remoteURL, {
+            const response = await fetch(url, {
                 method: "POST",
                 headers:{
                     'Content-Type':'application/json'
@@ -68,22 +72,16 @@
             });
    
            const data = await response.json()
-           console.log(data)
+           console.log(data.errors)
         })
-
-        /*
+*/
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
            const formdata = new FormData(form);
-            const response = await fetch(url, {
-                method: "POST",
-                body: formdata
-            });
-   
-           const data = await response.json()
+            const response = await fetch(url, { method: "POST", body: formdata });
+           const data = await response.json();
            console.log(data)
         })
-        */
       
     </script>
 </body>

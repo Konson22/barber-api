@@ -6,27 +6,31 @@ const jwt = require('jsonwebtoken');
 // Login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+  if(email === '' && password === ''){
+    return res.status(500).json({ message: 'Please fill in all fields!' });
+  }else{   
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (!passwordMatch) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+      const ACCESSTOKEN = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+        expiresIn: '1h',
+      });
+      res.json({ 
+        profile:{
+          _id:user._id, username:user.username, imageUrl:user.imageUrl
+        },
+        ACCESSTOKEN 
+      });
+    } catch (err) {
+      console.error('Error during login:', err);
+      res.status(500).json({ message: err });
     }
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-    const ACCESSTOKEN = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '1h',
-    });
-    res.json({ 
-      profile:{
-        _id:user._id, username:user.username, imageUrl:user.imageUrl
-      },
-      ACCESSTOKEN 
-    });
-  } catch (err) {
-    console.error('Error during login:', err);
-    res.status(500).json({ message: err });
   }
 }
 
@@ -66,7 +70,7 @@ const registerUser = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json(error.errors);
   }
 }
 
